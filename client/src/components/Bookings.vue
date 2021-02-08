@@ -8,6 +8,27 @@
         <button type="button" class="btn btn-success btn-sm"
                 v-b-modal.booking-modal>Add Booking</button>
         <br><br>
+        <div class="filter btn-group" role="group">
+          <b-dropdown id="form-hotel-input"
+                      :text="filteredHotel"
+                      v-model="filteredHotel"
+                      required
+                      width=100%>
+            <!-- <b-dropdown-item disabled value=" ">Select a Hotel</b-dropdown-item> -->
+            <b-dropdown-item v-for="hotel in hotels"
+                        :key="hotel.id"
+                        :value="hotel.id"
+                        @click="filteredHotel = hotel.name; filteredHotelID = hotel.id">
+              {{hotel.name}}
+            </b-dropdown-item>
+          </b-dropdown>
+          <button
+                  type="button"
+                  class="btn btn-warning btn-sm"
+                  @click="clearFilter()">
+              Clear Filter
+          </button>
+        </div>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -20,7 +41,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(booking, index) in bookings" :key="index">
+            <tr v-for="(booking, index) in filteredBookings" :key="index">
+            <!-- <tr v-for="(booking, index) in bookings" :key="index"> -->
               <td>{{ booking.from }}</td>
               <td>{{ booking.to }}</td>
               <td>{{ booking.name }}</td>
@@ -209,6 +231,18 @@ export default {
   computed: {
     isAuthenticated () {
       return this.$store.getters.isAuthenticated
+    },
+    filteredBookings: function () {
+      const vm = this
+      const hotel = vm.filteredHotel
+
+      if (hotel === 'Filter Hotel') {
+        return this.bookings
+      } else {
+        return vm.bookings.filter(function (bookings) {
+          return bookings.hotel === hotel
+        })
+      }
     }
   },
   data () {
@@ -216,6 +250,7 @@ export default {
       bookings: [],
       hotels: [],
       selectedHotel: 'Select a Hotel',
+      filteredHotel: 'Filter Hotel',
       formattedFromDate: '',
       addBookingForm: {
         from: '',
@@ -327,6 +362,8 @@ export default {
       this.editForm.from = moment(booking.from, 'DD/MM/YYYY')
       console.log(this.editForm.from)
       this.editForm.to = moment(booking.to, 'DD/MM/YYYY')
+      console.log(booking.hotel)
+      this.selectedHotel = booking.hotel
     },
     onSubmitUpdate (evt) {
       evt.preventDefault()
@@ -383,6 +420,9 @@ export default {
       const self = this
       const d = new Date(self.editForm.from)
       self.formatteFromDate = `${d.getUTCDate()}/${(d.getUTCMonth() + 1)}/${d.getUTCFullYear()}`
+    },
+    clearFilter () {
+      this.filteredHotel = 'Filter Hotel'
     }
   },
   created () {
