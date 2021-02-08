@@ -27,5 +27,8 @@
     Navigate to [http://localhost:8080](http://localhost:8080)
 
 4. Login credentials:
+
+   ```sh
    Email: fedon@vue.com
    Password: admin
+   ```
