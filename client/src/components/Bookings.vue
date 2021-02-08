@@ -57,13 +57,13 @@
                           type="button"
                           class="btn btn-warning btn-sm"
                           v-b-modal.booking-update-modal
-                          @click="editBooking(booking)">
+                          @click.stop="editBooking(booking)">
                       Update
                   </button>
                   <button
                           type="button"
                           class="btn btn-danger btn-sm"
-                          @click="onDeleteBooking(booking)">
+                          @click.stop="onDeleteBooking(booking)">
                       Delete
                   </button>
                 </div>

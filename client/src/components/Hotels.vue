@@ -17,8 +17,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(hotel, index) in hotels" :key="index" @click="goToBookings(hotel.name)">
-              <td><a>{{ hotel.name }}</a></td>
+            <tr class="pointer" v-for="(hotel, index) in hotels" :key="index" @click="goToBookings(hotel.name)">
+              <td>{{ hotel.name }}</td>
               <td>{{ hotel.address }}</td>
               <td>
                 <div v-if="isAuthenticated" class="btn-group" role="group">
@@ -26,13 +26,13 @@
                           type="button"
                           class="btn btn-warning btn-sm"
                           v-b-modal.hotel-update-modal
-                          @click="editHotel(hotel)">
+                          @click.stop="editHotel(hotel)">
                       Update
                   </button>
                   <button
                           type="button"
                           class="btn btn-danger btn-sm"
-                          @click="onDeleteHotel(hotel)">
+                          @click.stop="onDeleteHotel(hotel)">
                       Delete
                   </button>
                 </div>
@@ -107,7 +107,7 @@
   </div>
 </template>
 <style lang="css" scoped>
-.elevation-1 >>> tbody tr :hover {
+.pointer {
   cursor: pointer;
 }
 </style>

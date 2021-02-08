@@ -36,13 +36,13 @@
                             type="button"
                             class="btn btn-warning btn-sm"
                             v-b-modal.hotel-update-modal
-                            @click="editHotel(hotel)">
+                            @click.stop="editHotel(hotel)">
                         Update
                     </button>
                     <button
                             type="button"
                             class="btn btn-danger btn-sm"
-                            @click="onDeleteHotel(hotel)">
+                            @click.stop="onDeleteHotel(hotel)">
                         Delete
                     </button>
                   </div>
@@ -69,13 +69,13 @@
                           type="button"
                           class="btn btn-warning btn-sm"
                           v-b-modal.hotel-update-modal
-                          @click="editHotel(hotel)">
+                          @click.stop="editHotel(hotel)">
                       Update
                   </button>
                   <button
                           type="button"
                           class="btn btn-danger btn-sm"
-                          @click="onDeleteHotel(hotel)">
+                          @click.stop="onDeleteHotel(hotel)">
                       Delete
                   </button>
                 </div>
