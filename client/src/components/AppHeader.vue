@@ -2,7 +2,6 @@
   <header class="bg-dark text-center text-lg-start">
     <div class="container">
       <b-navbar toggleable="lg" type="dark" class="navbar-horizontal">
-        <!-- <b-navbar-brand href="#">PRIMARY COLOR</b-navbar-brand> -->
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
