@@ -5,7 +5,7 @@
         <h1>Hotels</h1>
         <hr><br><br>
         <alert :message=message v-if="showMessage"></alert>
-        <button type="button" class="btn btn-success btn-sm"
+        <button v-if="isAuthenticated" type="button" class="btn btn-success btn-sm"
                 v-b-modal.hotel-modal>Add Hotel</button>
         <br><br>
         <table class="table table-hover">
@@ -21,7 +21,7 @@
               <td>{{ hotel.name }}</td>
               <td>{{ hotel.address }}</td>
               <td>
-                <div class="btn-group" role="group">
+                <div v-if="isAuthenticated" class="btn-group" role="group">
                   <button
                           type="button"
                           class="btn btn-warning btn-sm"
@@ -112,6 +112,11 @@ import axios from 'axios'
 import Alert from './Alert.vue'
 
 export default {
+  computed: {
+    isAuthenticated () {
+      return this.$store.getters.isAuthenticated
+    }
+  },
   data () {
     return {
       hotels: [],

@@ -35,7 +35,7 @@ export default new Router({
     },
     {
       path: '/',
-      redirect: '/books'
+      redirect: '/Hotels'
     },
     {
       path: '/ping',

@@ -11,7 +11,8 @@
         <!-- <label>Email</label> -->
           <b-form-input required v-model="email"
                         type="text"
-                        placeholder="Email">
+                        placeholder="Email"
+                        autocomplete="on">
           </b-form-input>
         </b-form-group>
         <b-form-group id="form-password-group"
@@ -20,7 +21,8 @@
         <!-- <label>Password</label> -->
           <b-form-input required v-model="password"
                         type="password"
-                        placeholder="Password">
+                        placeholder="Password"
+                        autocomplete="on">
           </b-form-input>
         </b-form-group>
         <hr/>

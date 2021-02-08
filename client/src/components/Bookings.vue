@@ -30,7 +30,7 @@
                 <span v-else>No</span>
               </td>
               <td>
-                <div class="btn-group" role="group">
+                <div v-if="isAuthenticated" class="btn-group" role="group">
                   <button
                           type="button"
                           class="btn btn-warning btn-sm"
@@ -107,7 +107,7 @@
           </b-dropdown>
         </b-form-group>
       </div>
-        <b-form-group id="form-confirmed-group">
+        <b-form-group v-if="isAuthenticated" id="form-confirmed-group">
           <b-form-checkbox-group v-model="addBookingForm.confirmed" id="form-checks">
             <b-form-checkbox value="true">Confirmed?</b-form-checkbox>
           </b-form-checkbox-group>
@@ -206,6 +206,11 @@ import moment from 'moment'
 import Alert from './Alert.vue'
 
 export default {
+  computed: {
+    isAuthenticated () {
+      return this.$store.getters.isAuthenticated
+    }
+  },
   data () {
     return {
       bookings: [],
@@ -307,7 +312,7 @@ export default {
       this.addBooking(payload)
       this.initForm()
     },
-    onResetb (evt) {
+    onReset (evt) {
       evt.preventDefault()
       this.$refs.addBookingModal.hide()
       this.initForm()
