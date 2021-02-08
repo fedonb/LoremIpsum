@@ -1,6 +1,7 @@
 <template>
   <header class="bg-dark text-center text-lg-start">
     <div class="container">
+      <h1 class="title">LOREM IPSUM HOTELS</h1>
       <b-navbar toggleable="lg" type="dark" class="navbar-horizontal">
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -61,6 +62,11 @@
 .navbar-default {
     background-color: white;
     border-color: white;
+}
+.title {
+    color: white;
+    text-align: left;
+    font-weight: bold;
 }
 </style>
 <script>
