@@ -5,6 +5,7 @@
       <b-form class="authenticate" @submit.prevent="authenticate">
         <h1>Log in</h1>
         <hr><br><br>
+        <alert :message=message v-if="showMessage"></alert>
         <b-form-group id="form-email-group"
                     label="Email:"
                     label-for="form-email-input">
@@ -35,20 +36,35 @@
 </div>
 </template>
 <script>
+import Alert from './ErrorAlert.vue'
+
 export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      message: '',
+      showMessage: false
     }
+  },
+  components: {
+    alert: Alert
   },
   methods: {
     authenticate () {
       const logemail = this.email
       const logpassword = this.password
       this.$store.dispatch('login', { email: logemail, password: logpassword })
-        .then(() => this.$router.push('/'))
-        .catch((err) => console.log(err))
+        .then(() => {
+          this.message = ''
+          this.showMessage = false
+          this.$router.push('/')
+        })
+        .catch((err) => {
+          console.log(err)
+          this.message = 'User not found'
+          this.showMessage = true
+        })
       // this.$store.dispatch('login', { logemail, logpassword })
       //   .then(() => this.$router.push('/'))
       //   .catch((err) => console.log(err));
