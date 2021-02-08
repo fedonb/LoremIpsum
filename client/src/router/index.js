@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Books from '../components/Books.vue'
 import Hotels from '../components/Hotels.vue'
+import Hotels2 from '../components/Hotels2.vue'
 import Bookings from '../components/Bookings.vue'
 import Login from '../components/Login.vue'
 import About from '../components/About.vue'
@@ -18,6 +19,11 @@ export default new Router({
       path: '/hotels',
       name: 'Hotels',
       component: Hotels
+    },
+    {
+      path: '/hotels2',
+      name: 'Hotels2',
+      component: Hotels2
     },
     {
       path: '/books',

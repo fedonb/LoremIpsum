@@ -18,13 +18,13 @@
                     </span>
                   </router-link>
                 </li>
-                <!-- <li class="nav-item">
-                  <router-link class="nav-link nav-link-icon" to="/books">
+                <li class="nav-item">
+                  <router-link class="nav-link nav-link-icon" to="/hotels2">
                     <span class="nav-link nav-link-inner--text">
-                      Books
+                      Hotels2
                     </span>
                   </router-link>
-                </li> -->
+                </li>
                 <li class="nav-item">
                   <router-link class="nav-link nav-link-icon" to="/bookings">
                     <span class="nav-link nav-link-inner--text">

@@ -235,8 +235,12 @@ export default {
     filteredBookings: function () {
       const vm = this
       const hotel = vm.filteredHotel
-
-      if (hotel === 'Filter Hotel') {
+      if (this.filteredFromParent) {
+        const newfilteredHotel = this.filteredHotel
+        return vm.bookings.filter(function (bookings) {
+          return bookings.hotel === newfilteredHotel
+        })
+      } else if (hotel === 'Filter Hotel') {
         return this.bookings
       } else {
         return vm.bookings.filter(function (bookings) {
@@ -251,6 +255,7 @@ export default {
       hotels: [],
       selectedHotel: 'Select a Hotel',
       filteredHotel: 'Filter Hotel',
+      filteredFromParent: false,
       formattedFromDate: '',
       addBookingForm: {
         from: '',
@@ -269,6 +274,12 @@ export default {
         hotel: '',
         confirmed: []
       }
+    }
+  },
+  mounted: function () {
+    if (this.$route.params.hotel !== undefined) {
+      this.filteredFromParent = true
+      this.filteredHotel = this.$route.params.hotel
     }
   },
   components: {
@@ -423,6 +434,7 @@ export default {
     },
     clearFilter () {
       this.filteredHotel = 'Filter Hotel'
+      this.filteredFromParent = false
     }
   },
   created () {

@@ -8,6 +8,49 @@
         <button v-if="isAuthenticated" type="button" class="btn btn-success btn-sm"
                 v-b-modal.hotel-modal>Add Hotel</button>
         <br><br>
+        <v-card>
+          <v-card-title>
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+            ></v-text-field>
+          </v-card-title>
+            <v-data-table
+              :headers="headers"
+              :items="hotels"
+              class="elevation-1"
+              :loading="loading" loading-text="Loading... Please wait"
+              :search="search"
+              @click:row="goToBookings(hotels.name)"
+            >
+            <template slot="items" scope="hotel">
+              <tr>
+                <td>{{ hotel.name }}</td>
+                <td>{{ hotel.address }}</td>
+                <td>
+                  <div v-if="isAuthenticated" class="btn-group" role="group">
+                    <button
+                            type="button"
+                            class="btn btn-warning btn-sm"
+                            v-b-modal.hotel-update-modal
+                            @click="editHotel(hotel)">
+                        Update
+                    </button>
+                    <button
+                            type="button"
+                            class="btn btn-danger btn-sm"
+                            @click="onDeleteHotel(hotel)">
+                        Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </template>
+          </v-data-table>
+        </v-card>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -17,7 +60,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(hotel, index) in hotels" :key="index" @click="goToBookings(hotel.name)">
+            <tr v-for="(hotel, index) in hotels" :key="index" @click="goToBookings(hotels.name)">
               <td><a>{{ hotel.name }}</a></td>
               <td>{{ hotel.address }}</td>
               <td>
@@ -123,6 +166,17 @@ export default {
   },
   data () {
     return {
+      search: '',
+      headers: [
+        {
+          text: 'Name',
+          align: 'start',
+          value: 'name'
+        },
+        { text: 'Address', value: 'address' },
+        { text: ' ', value: 'edit' },
+        { text: ' ', value: 'delete' }
+      ],
       hotels: [],
       addHotelForm: {
         name: '',
@@ -142,7 +196,7 @@ export default {
   },
   methods: {
     goToBookings (name) {
-      this.$router.push({ name: 'Bookings', params: { hotel: name } })
+      this.$router.push({ name: 'Bookings', params: { hotels: name } })
     },
     getHotels () {
       const path = 'http://localhost:5000/hotels'
