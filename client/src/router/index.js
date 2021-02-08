@@ -4,6 +4,7 @@ import Books from '../components/Books.vue'
 import Hotels from '../components/Hotels.vue'
 import Bookings from '../components/Bookings.vue'
 import Login from '../components/Login.vue'
+import About from '../components/About.vue'
 import NotFound from '../components/NotFound.vue'
 import Ping from '../components/Ping.vue'
 
@@ -27,6 +28,11 @@ export default new Router({
       path: '/bookings',
       name: 'Bookings',
       component: Bookings
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About
     },
     {
       path: '/login',

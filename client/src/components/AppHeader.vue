@@ -33,6 +33,13 @@
                   </router-link>
                 </li>
                 <li class="nav-item">
+                  <router-link class="nav-link nav-link-icon" to="/about">
+                    <span class="nav-link nav-link-inner--text">
+                      About
+                    </span>
+                  </router-link>
+                </li>
+                <li class="nav-item">
                   <router-link v-if="isAuthenticated" v-on:click.native="logout()" class="nav-link nav-link-icon" to="/">
                     <span class="nav-link nav-link-inner--text">
                       Logout
