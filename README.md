@@ -9,7 +9,7 @@
     ```sh
     $ cd server
     $ python3.9 -m venv env
-    $ source env/bin/activate
+    $ env\Scripts\activate.bat
     (env)$ pip install -r requirements.txt
     (env)$ python app.py
     ```
