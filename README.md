@@ -4,11 +4,11 @@
 
 1. Fork/Clone
 
-2. Run the server-side Flask app in one terminal window:
+2. Run the server-side Flask app in one terminal window (I use python3.9):
 
     ```sh
     $ cd server
-    $ python3.9 -m venv env
+    $ python -m venv env
     $ env\Scripts\activate.bat
     (env)$ pip install -r requirements.txt
     (env)$ python app.py
