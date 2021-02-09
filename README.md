@@ -10,6 +10,8 @@
     $ cd server
     $ python -m venv env
     $ env\Scripts\activate.bat
+    $ pip install pandas
+    $ pip install PyJWT
     (env)$ pip install -r requirements.txt
     (env)$ python app.py
     ```
